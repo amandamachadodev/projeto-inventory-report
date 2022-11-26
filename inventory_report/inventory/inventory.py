@@ -10,14 +10,16 @@ class Inventory:
     def import_data(cls, path, type):
         data = cls.read(path)
         if type == "simples":
-            return SimpleReport.generate(data)
+            simple = SimpleReport.generate(data)
+            return simple
         else:
-            return CompleteReport.generate(data)
-            
+            complete = CompleteReport.generate(data)
+            return complete
+
     @classmethod
     def read(cls, path):
         report = []
-        with open(path, encoding="utf-8") as file:
+        with open(path) as file:
             if path.endswith(".csv"):
                 reader = csv.DictReader(file)
                 for element in reader:
