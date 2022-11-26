@@ -8,7 +8,7 @@ from inventory_report.reports.simple_report import SimpleReport
 class Inventory:
     @classmethod
     def import_data(cls, path, type):
-        data = cls.read(path)
+        data = cls.read_file(path)
         if type == "simples":
             simple = SimpleReport.generate(data)
             return simple
@@ -17,7 +17,7 @@ class Inventory:
             return complete
 
     @classmethod
-    def read(cls, path):
+    def read_file(cls, path):
         report = []
         with open(path) as file:
             if path.endswith(".csv"):
