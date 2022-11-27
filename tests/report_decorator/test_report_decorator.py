@@ -12,11 +12,20 @@ def test_decorarate_relatorio():
         "numero_de_serie": "3690",
         "instrucoes_de_armazenamento": "Ambiente com clima fresco"
     }]
+
     colored = ColoredReport(SimpleReport).generate(product)
 
+    fabricacao = "\033[32mData de fabricação mais antiga:\033[0m"
+        + "\033[36m08/03/2022\033[On\n"
+    validade = "\033[32mData de validade mais próxima:\033[0m"
+        + "\033[36m08/12/2022\033[0n\n"
+    produtos = "\033[32mEmpresa com mais produtos:\033[0m"
+        + "\033[31mLacta\033[0m"
+
     expect = (
-        f"\033[32mData de fabricação mais antiga:\033[0m \033[36m08/03/2022\033[On\n"
-        f"\033[32mData de validade mais próxima:\033[0m \033[36m08/12/2022\033[0n\n"
-        f"\033[32mEmpresa com mais produtos:\033[0m \033[31mLacta\033[0m"
+        f"{fabricacao}\n"
+        f"{validade}\n"
+        f"{produtos}"
         )
+
     assert colored == expect
